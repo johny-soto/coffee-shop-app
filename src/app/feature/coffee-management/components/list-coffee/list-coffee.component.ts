@@ -56,9 +56,10 @@ export class ListCoffeeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(!result) {
-        this.addRowCoffee(result);
-        console.log(result);
+        return;
       }
+      this.addRowCoffee(result);
+      console.log(result);
     });
   }
 
@@ -77,16 +78,46 @@ export class ListCoffeeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(!result) {
-        // this.addRowCoffee(result);
-        console.log(result);
+        return;
       }
+      this.updateRowCoffee(result);
+      console.log(result);
     });
 
   }
 
-  deleteCoffee(coffee: GetCoffee) {
-    console.log(coffee);
+  updateRowCoffee(coffee: GetCoffee){
+    const index = this.coffees.findIndex(c => c.id == coffee.id);
+      this.coffees.splice(index, 1, {
+        id: coffee.id,
+        name: coffee.name,
+        categoryId: coffee.categoryId,
+        categoryDescription: coffee.categoryDescription,
+        price: coffee.price,
+        units: coffee.units
+      });
+    this.coffees.push(coffee);
+    this.dataSource = new MatTableDataSource(this.coffees);
+    this.dataSource.paginator = this.paginator;
+    this.table.renderRows();
+  }
 
+  deleteCoffee(coffee: GetCoffee) {
+    if(confirm("Estas seguro de eliminar " + coffee.name)) {
+      this.coffeeService.delete(coffee.id).subscribe(() => {
+        this.deleteRowCoffee(coffee.id)
+      })
+    }
+
+
+  }
+
+  deleteRowCoffee(coffeeId: number){
+    const indexOf = this.coffees.findIndex(c => c.id == coffeeId);
+    this.coffees.splice(indexOf, 1);
+    this.dataSource = new MatTableDataSource(this.coffees);
+    this.dataSource.paginator = this.paginator;
+    this.table.renderRows();
   }
 
 }

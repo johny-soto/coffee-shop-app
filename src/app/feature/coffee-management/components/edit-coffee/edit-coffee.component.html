@@ -15,7 +15,7 @@
 
     <mat-form-field>
       <mat-label>Categoria</mat-label>
-      <mat-select formControlName="categoryId" required  [compareWith]="compareFn"  [formControl]="selectedCategory" >
+      <mat-select formControlName="categoryId" required [compareWith]="compareFn"    >
         <!-- <mat-option value="{{selectedCategory.id}}">{{selectedCategory.description}}</mat-option> -->
         <mat-option [(value)]="category.id" *ngFor="let category of categories" value="{{category.id}}">{{category.description}}</mat-option>
       </mat-select>

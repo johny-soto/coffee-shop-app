@@ -27,4 +27,8 @@ export class CoffeeService {
     return this.http.doPut<UpdateCoffee, void>(`${environment.endpoint}/coffees/${coffee.id}`, coffee,
      this.http.optsName('Crear café'));
   }
+
+  public delete(coffeeId: number) {
+    return this.http.doDelete<void>(`${environment.endpoint}/coffees/${coffeeId}`, this.http.optsName('Crear café'));
+  }
 }
