@@ -1,0 +1,7 @@
+{
+  "/coffee-shop-api": {
+    "target": "http://localhost:8083",
+    "logLevel": "debug"
+  }
+
+}

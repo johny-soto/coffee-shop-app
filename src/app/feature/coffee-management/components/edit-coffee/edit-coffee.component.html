@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-title>Editar café</mat-card-title>
+
+  <form [formGroup]="formGroup" class="form-field-full">
+
+    <mat-form-field style="margin-right: 10px;">
+      <mat-label>Nombre</mat-label>
+      <label>
+        <input matInput placeholder="Nombre" formControlName="name" required>
+      </label>
+      <mat-error *ngIf="formGroup.get('name').invalid">
+        Requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="categoryId" required  [compareWith]="compareFn"  [formControl]="selectedCategory" >
+        <!-- <mat-option value="{{selectedCategory.id}}">{{selectedCategory.description}}</mat-option> -->
+        <mat-option [(value)]="category.id" *ngFor="let category of categories" value="{{category.id}}">{{category.description}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formGroup.get('categoryId').invalid">
+        Requerido
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="margin-right: 10px;">
+      <mat-label>Precio</mat-label>
+      <label>
+        <input matInput type="number" placeholder="Precio" formControlName="price"
+               required>
+      </label>
+      <mat-error *ngIf="formGroup.get('price').errors?.required">
+        Requerido
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('price').errors?.min">
+        Valor minimo "1"
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Unidades</mat-label>
+      <label>
+        <input matInput  type="number" placeholder="Unidades" formControlName="units"
+               required>
+      </label>
+      <mat-error *ngIf="formGroup.get('units').errors?.required">
+        Requerido
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('units').errors?.min">
+        Valor minimo "1"
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button style="margin-right: 10px" (click)="onCloseClick()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onSubmitClick()">Submit</button>
+  </form>
+
+</mat-card>
