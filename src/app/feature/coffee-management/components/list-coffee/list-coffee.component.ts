@@ -108,8 +108,6 @@ export class ListCoffeeComponent implements OnInit {
         this.deleteRowCoffee(coffee.id)
       })
     }
-
-
   }
 
   deleteRowCoffee(coffeeId: number){

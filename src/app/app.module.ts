@@ -9,10 +9,7 @@ import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { CoffeeManagementModule } from './feature/coffee-management/coffee-management.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
-
+import { CoffeeShopModule } from './feature/coffee-shop/coffee-shop.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +20,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ProductoModule,
     CoffeeManagementModule,
+    CoffeeShopModule,
     CoreModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
   ],
   providers: [CookieService],
     bootstrap: [AppComponent],

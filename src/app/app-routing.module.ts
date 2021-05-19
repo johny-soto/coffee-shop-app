@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SecurityGuard } from '@core/guard/security.guard';
-import { HomeComponent } from '@home/home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [SecurityGuard]  },
+  { path: '', redirectTo: '/shop', pathMatch: 'full' },
+  { path: 'shop', loadChildren: () => import('./feature/coffee-shop/coffee-shop.module').then(mod => mod.CoffeeShopModule) },
   { path: 'producto', loadChildren: () => import('@producto/producto.module').then(mod => mod.ProductoModule) },
   { path: 'coffee-management', loadChildren: () => import('./feature/coffee-management/coffee-management.module').then(mod => mod.CoffeeManagementModule) }
 

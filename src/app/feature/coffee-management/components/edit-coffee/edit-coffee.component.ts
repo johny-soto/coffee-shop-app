@@ -17,8 +17,6 @@ export class EditCoffeeComponent implements OnInit {
   ];
 
   formGroup: FormGroup;
-  control: FormControl;
-  // selectedCategory;
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditCoffeeComponent>,

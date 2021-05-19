@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-title>Resumen de pedido</mat-card-title>
+
+  <form [formGroup]="formGroup" class="form-field-full">
+
+    <mat-form-field style="margin-right: 10px;">
+      <mat-label>Precio Bruto</mat-label>
+      <label>
+        <input matInput type="number" readonly placeholder="Precio bruto" formControlName="orderGrossPrice" required>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field style="margin-right: 10px;">
+      <mat-label>Descuento</mat-label>
+      <label>
+        <input matInput type="number" readonly placeholder="Descuento" formControlName="discount"
+               required>
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="margin-right: 10px;">
+      <mat-label>Cargos</mat-label>
+      <label>
+        <input matInput type="number" readonly placeholder="Cargos" formControlName="charges"
+               required>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Total</mat-label>
+      <label>
+        <input matInput  type="number" readonly placeholder="Total" formControlName="total"
+               required>
+      </label>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button style="margin-right: 10px" (click)="onCloseClick()">Cancel</button>
+    <button mat-raised-button color="accent" [disabled]="!formGroup.valid" (click)="onSubmitClick()">Pagar</button>
+  </form>
+
+</mat-card>
