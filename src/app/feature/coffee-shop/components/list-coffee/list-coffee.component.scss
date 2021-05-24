@@ -2,7 +2,7 @@
   margin: 10px;
   // max-width: 150px;
   width: calc(100% - 70px);
-  height: calc(105% - 70px);
+  height: calc(108% - 70px);
 }
 
 .main-image{
@@ -16,4 +16,7 @@
   margin-left: 93%;
 }
 
-
+::ng-deep md-grid-tile.mat-grid-tile .mat-figure {
+  align-items: initial;  /*vertical alignment*/
+  justify-content: initial;  /*horizontal alignment*/
+}

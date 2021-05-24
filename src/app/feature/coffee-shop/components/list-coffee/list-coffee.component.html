@@ -1,10 +1,26 @@
-<div class="button-container" >
-  <button mat-fab color="accent" (click)="resumeOrder()">
+<div align="right">
+  <div align="right" style="margin: 10px;">
+    <mat-label>
+      TRM= {{TRM}}
+    </mat-label>
+  </div>
+
+  <mat-form-field appearance="fill" style=" margin-right: 10px; margin-bottom: 10px;">
+    <mat-label>Modeda</mat-label>
+    <mat-select ngModel="USD" (selectionChange)="changeCurrency($event.value)">
+      <mat-option value="USD">USD</mat-option>
+      <mat-option value="COP">COP</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div align="left" style="margin-top: -80px; margin-left: 20px;">
+  <button mat-fab color="accent" matTooltip="Resumen de compra" (click)="resumeOrder()">
     <mat-icon>payment</mat-icon>
   </button>
 </div>
 
-<mat-grid-list [responsive]="true" (responsiveColsChange)="cols = $event">
+<mat-grid-list [appResponsive]="true" (responsiveColsChange)="cols = $event">
   <mat-grid-tile *ngFor="let coffee of coffees">
     <mat-card class="card">
       <mat-card-header>
@@ -15,8 +31,9 @@
       </mat-card-header>
       <img mat-card-image class="main-image" src="{{coffeeImage + '?' + coffee.name}}" alt="Coffee">
       <mat-card-content>
-        <div align="end">
-          <h4>${{coffee.price}}</h4>
+        <mat-label>{{coffee.categoryDescription}}</mat-label>
+        <div align="right">
+          <mat-label>${{coffee.price}}</mat-label>
         </div>
       </mat-card-content>
       <mat-card-actions>

@@ -7,9 +7,7 @@ import { HomeComponent } from '@home/home.component';
 import { ProductoModule } from '@producto/producto.module';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
-import { CoffeeManagementModule } from './feature/coffee-management/coffee-management.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CoffeeShopModule } from './feature/coffee-shop/coffee-shop.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,8 +17,6 @@ import { CoffeeShopModule } from './feature/coffee-shop/coffee-shop.module';
     BrowserModule,
     AppRoutingModule,
     ProductoModule,
-    CoffeeManagementModule,
-    CoffeeShopModule,
     CoreModule,
     NoopAnimationsModule,
   ],

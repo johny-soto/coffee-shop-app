@@ -1,8 +1,8 @@
 export interface OrderSummary {
-  id :number;
+  id: number;
   orderGrossPrice: number;
   discount: number;
   charges: number;
   total: number;
-  date: Date
+  date: Date;
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 
-import { MatGridListResponsive } from './mat-grid-list-responsive.directive';
+import { MatGridListResponsiveDirective } from './mat-grid-list-responsive.directive';
 
 @NgModule({
   imports: [
@@ -10,10 +10,10 @@ import { MatGridListResponsive } from './mat-grid-list-responsive.directive';
     MatGridListModule
   ],
   declarations: [
-    MatGridListResponsive
+    MatGridListResponsiveDirective
   ],
   exports: [
-    MatGridListResponsive
+    MatGridListResponsiveDirective
   ]
 })
 export class MatGridListResponsiveModule { }

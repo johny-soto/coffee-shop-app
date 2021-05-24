@@ -19,9 +19,9 @@ export class EditCoffeeComponent implements OnInit {
   formGroup: FormGroup;
 
   constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<EditCoffeeComponent>,
-    private coffeeService: CoffeeService,
-    @Inject(MAT_DIALOG_DATA) public coffee: UpdateCoffee) {
+              public dialogRef: MatDialogRef<EditCoffeeComponent>,
+              private coffeeService: CoffeeService,
+              @Inject(MAT_DIALOG_DATA) public coffee: UpdateCoffee) {
 
     this.formGroup = this.fb.group({
       id: [coffee.id, [Validators.required]],
@@ -30,7 +30,7 @@ export class EditCoffeeComponent implements OnInit {
       price: [coffee.price, [Validators.required, Validators.min(1)]],
       units: [coffee.units, [Validators.required, Validators.min(1)]],
     });
-    const index = this.categories.findIndex(c => c.id == coffee.categoryId);
+    const index = this.categories.findIndex(c => c.id === +coffee.categoryId);
     this.formGroup.setControl('categoryId', new FormControl(this.categories[index].id));
   }
 
@@ -44,26 +44,26 @@ export class EditCoffeeComponent implements OnInit {
   onSubmitClick() {
     const coffee: UpdateCoffee = this.formGroup.getRawValue();
     this.coffeeService.update(coffee).subscribe(
-      () =>{
+      () => {
         this.dialogRef.close(coffee);
         this.makeCoffeeResponse(coffee);
-      })
+      });
   }
 
   makeCoffeeResponse(coffee: UpdateCoffee) {
-    let obj = {
+    const obj = {
       id: coffee.id,
       name: coffee.name,
       categoryId: coffee.categoryId,
-      categoryDescription: this.categories.find(x => x.id == coffee.categoryId).description,
+      categoryDescription: this.categories.find(x => x.id === +coffee.categoryId).description,
       price: coffee.price,
       units: coffee.units
-    }
+    };
     this.dialogRef.close(obj);
   }
 
   compareFn(c1: any, c2: any): boolean {
-    return c1 == c2;
+    return c1 === c2;
   }
 
 

@@ -2,20 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { environment } from 'src/environments/environment';
 import { CreateCoffee } from '../model/create-coffee';
-import { GetCoffee } from '../model/get-coffee';
 import { ResponseCoffee } from '../model/response-coffee';
 import { UpdateCoffee } from '../model/edit-coffee';
+import { BaseCoffeeService } from '@shared/services/base-coffee.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CoffeeService {
+@Injectable()
+export class CoffeeService extends BaseCoffeeService {
 
   constructor(protected http: HttpService) {
-  }
-
-  public getAll() {
-    return this.http.doGet<GetCoffee[]>(`${environment.endpoint}/coffees`, this.http.optsName('Listar Cafés'));
+    super(http);
   }
 
   public save(coffee: CreateCoffee) {

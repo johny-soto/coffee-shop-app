@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetCoffee } from '../../shared/model/get-coffee';
+import { GetCoffee } from '../../../../shared/model/get-coffee';
 import { CoffeeService } from '../../shared/services/coffee.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,7 +21,7 @@ export class ListCoffeeComponent implements OnInit {
   coffees: GetCoffee[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatTable,{static:true}) table: MatTable<any>;
+  @ViewChild(MatTable, { static: true }) table: MatTable<GetCoffee>;
 
   constructor(protected coffeeService: CoffeeService, private dialog: MatDialog) { }
 
@@ -46,7 +46,7 @@ export class ListCoffeeComponent implements OnInit {
 
   private handleCoffeesError(err) {
     console.error(err);
-    alert("Problema cargando cafés!")
+    alert('Problema cargando cafés!');
   }
 
   addCoffee() {
@@ -55,7 +55,7 @@ export class ListCoffeeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(!result) {
+      if (!result) {
         return;
       }
       this.addRowCoffee(result);
@@ -63,7 +63,7 @@ export class ListCoffeeComponent implements OnInit {
     });
   }
 
-  addRowCoffee(coffee: GetCoffee){
+  addRowCoffee(coffee: GetCoffee) {
     this.coffees.push(coffee);
     this.dataSource = new MatTableDataSource(this.coffees);
     this.dataSource.paginator = this.paginator;
@@ -77,7 +77,7 @@ export class ListCoffeeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(!result) {
+      if (!result) {
         return;
       }
       this.updateRowCoffee(result);
@@ -86,32 +86,31 @@ export class ListCoffeeComponent implements OnInit {
 
   }
 
-  updateRowCoffee(coffee: GetCoffee){
-    const index = this.coffees.findIndex(c => c.id == coffee.id);
-      this.coffees.splice(index, 1, {
-        id: coffee.id,
-        name: coffee.name,
-        categoryId: coffee.categoryId,
-        categoryDescription: coffee.categoryDescription,
-        price: coffee.price,
-        units: coffee.units
-      });
-    this.coffees.push(coffee);
+  updateRowCoffee(coffee: GetCoffee) {
+    const index = this.coffees.findIndex(c => c.id === +coffee.id);
+    this.coffees.splice(index, 1, {
+      id: coffee.id,
+      name: coffee.name,
+      categoryId: coffee.categoryId,
+      categoryDescription: coffee.categoryDescription,
+      price: coffee.price,
+      units: coffee.units
+    });
     this.dataSource = new MatTableDataSource(this.coffees);
     this.dataSource.paginator = this.paginator;
     this.table.renderRows();
   }
 
   deleteCoffee(coffee: GetCoffee) {
-    if(confirm("Estas seguro de eliminar " + coffee.name)) {
+    if (confirm('Estas seguro de eliminar ' + coffee.name)) {
       this.coffeeService.delete(coffee.id).subscribe(() => {
-        this.deleteRowCoffee(coffee.id)
-      })
+        this.deleteRowCoffee(coffee.id);
+      });
     }
   }
 
-  deleteRowCoffee(coffeeId: number){
-    const indexOf = this.coffees.findIndex(c => c.id == coffeeId);
+  deleteRowCoffee(coffeeId: number) {
+    const indexOf = this.coffees.findIndex(c => c.id === +coffeeId);
     this.coffees.splice(indexOf, 1);
     this.dataSource = new MatTableDataSource(this.coffees);
     this.dataSource.paginator = this.paginator;

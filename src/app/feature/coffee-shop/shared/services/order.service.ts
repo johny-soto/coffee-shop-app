@@ -4,20 +4,18 @@ import { environment } from 'src/environments/environment';
 import { CreateOrder } from '../model/create-order';
 import { OrderSummary } from '../model/order-summary';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OrderService {
 
   constructor(protected http: HttpService) { }
 
   public create(order: CreateOrder) {
     return this.http.doPost<CreateOrder, OrderSummary>(`${environment.endpoint}/orders`, order,
-     this.http.optsName('Crear pedido'));
+      this.http.optsName('Crear pedido'));
   }
 
   public place(order: any) {
     return this.http.doPut<any, void>(`${environment.endpoint}/orders`, order,
-     this.http.optsName('Realizar pedido'));
+      this.http.optsName('Realizar pedido'));
   }
 }

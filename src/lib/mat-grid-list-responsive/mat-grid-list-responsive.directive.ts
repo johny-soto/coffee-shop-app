@@ -39,14 +39,14 @@ enum MatchedBreakpoint {
 }
 
 @Directive({
-  selector: 'mat-grid-list[responsive]',
+  selector: '[appResponsive]',
   exportAs: 'matGridListResponsive'
 })
-export class MatGridListResponsive implements OnInit, OnChanges, OnDestroy {
-  @Input('responsive') responsive = false;
+export class MatGridListResponsiveDirective implements OnInit, OnChanges, OnDestroy {
+  @Input('appResponsive') responsive = false;
   private responsive$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.responsive);
 
-  @Output('responsiveColsChange') colsChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() colsChange: EventEmitter<number> = new EventEmitter<number>();
 
   private breakPointObservable: Observable<MatchedBreakpoint>;
   private breakPointObserverSubscription = Subscription.EMPTY;
@@ -63,7 +63,7 @@ export class MatGridListResponsive implements OnInit, OnChanges, OnDestroy {
           filter(state => state.matches),
           map(() => alias)
         );
-    this.breakPointObservable =  merge(
+    this.breakPointObservable = merge(
       buildObservable(MatchedBreakpoint.XLarge, Breakpoints.XLarge),
       buildObservable(MatchedBreakpoint.Large, Breakpoints.Large),
       buildObservable(MatchedBreakpoint.Medium, Breakpoints.Medium),

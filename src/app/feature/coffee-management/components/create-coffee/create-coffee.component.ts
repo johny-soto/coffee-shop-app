@@ -18,8 +18,8 @@ export class CreateCoffeeComponent implements OnInit {
   formGroup: FormGroup;
 
   constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<CreateCoffeeComponent>,
-    private coffeeService: CoffeeService) {
+              public dialogRef: MatDialogRef<CreateCoffeeComponent>,
+              private coffeeService: CoffeeService) {
 
     this.formGroup = this.fb.group({
       name: ['', [Validators.required]],
@@ -41,18 +41,18 @@ export class CreateCoffeeComponent implements OnInit {
     this.coffeeService.save(coffee).subscribe(
       response => {
         this.makeCoffeeResponse(response.value, coffee);
-      })
+      });
   }
 
-  makeCoffeeResponse(id: number, coffee: CreateCoffee) {
-    let obj = {
-      id: id,
+  makeCoffeeResponse(coffeId: number, coffee: CreateCoffee) {
+    const obj = {
+      id: coffeId,
       name: coffee.name,
       categoryId: coffee.categoryId,
-      categoryDescription: this.categories.find(x => x.id == coffee.categoryId).description,
+      categoryDescription: this.categories.find(x => x.id === +coffee.categoryId).description,
       price: coffee.price,
       units: coffee.units
-    }
+    };
     this.dialogRef.close(obj);
   }
 
