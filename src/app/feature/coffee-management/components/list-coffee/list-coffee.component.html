@@ -1,9 +1,7 @@
-
-<mat-card >
-  <mat-card-header style="display: flex;
-  justify-content: flex-end;">
-    <mat-card-title >
-      <button mat-mini-fab color="accent" aria-label="Agregar" (click)="addCoffee()" >
+<mat-card>
+  <mat-card-header style="display: flex; justify-content: flex-end;">
+    <mat-card-title>
+      <button id="add" mat-mini-fab color="accent" aria-label="Agregar" (click)="addCoffee()">
         <mat-icon>plus_one</mat-icon>
       </button>
     </mat-card-title>
@@ -13,7 +11,7 @@
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td class="name" mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="categoryDescription">
@@ -32,20 +30,23 @@
       </ng-container>
 
       <ng-container matColumnDef="action">
-        <tr><th mat-header-cell *matHeaderCellDef> Acción </th></tr>
+        <tr>
+          <th mat-header-cell *matHeaderCellDef> Acción </th>
+        </tr>
         <tr>
           <td mat-cell *matCellDef="let element" style="width:20%">
-            <button mat-icon-button color="primary" (click)="editCoffee(element)" title="Edit Contact"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button color="primary" (click)="deleteCoffee(element)" title="View Contact"><mat-icon>delete</mat-icon></button>
+            <button id="edit" mat-icon-button color="primary" (click)="editCoffee(element)" title="Edit">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button id="delete" mat-icon-button color="primary" (click)="deleteCoffee(element)" title="Delete">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         <tr>
       </ng-container>
-
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator id="paginator" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
   </mat-card-content>
 </mat-card>
-

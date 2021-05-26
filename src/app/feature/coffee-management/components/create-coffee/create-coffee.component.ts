@@ -41,7 +41,12 @@ export class CreateCoffeeComponent implements OnInit {
     this.coffeeService.save(coffee).subscribe(
       response => {
         this.makeCoffeeResponse(response.value, coffee);
-      });
+      },
+      err => {
+        console.log(err);
+        alert('Error creando café');
+      }
+    );
   }
 
   makeCoffeeResponse(coffeId: number, coffee: CreateCoffee) {

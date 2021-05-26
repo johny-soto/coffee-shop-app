@@ -15,7 +15,7 @@
 </div>
 
 <div align="left" style="margin-top: -80px; margin-left: 20px;">
-  <button mat-fab color="accent" matTooltip="Resumen de compra" (click)="resumeOrder()">
+  <button id="summary" mat-fab color="accent" matTooltip="Resumen de compra" (click)="resumeOrder()">
     <mat-icon>payment</mat-icon>
   </button>
 </div>
@@ -24,7 +24,7 @@
   <mat-grid-tile *ngFor="let coffee of coffees">
     <mat-card class="card">
       <mat-card-header>
-        <mat-card-title>{{coffee.name}}</mat-card-title>
+        <mat-card-title class="name">{{coffee.name}}</mat-card-title>
         <div align="end">
           <mat-checkbox (change)="selectCoffee($event.checked, coffee)"></mat-checkbox>
         </div>
